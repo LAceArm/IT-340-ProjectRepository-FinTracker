@@ -41,8 +41,8 @@ const User=new mongoose.Schema({
     requir:true
   },
   username:String,
-  budget: [],
-  expenses: []
+  budget: [Budget],
+  expenses: [Expenses]
 })
 app.get('/', (req, res) => {
   res.send('Backend is running');
