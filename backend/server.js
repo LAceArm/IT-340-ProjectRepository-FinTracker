@@ -10,15 +10,35 @@ mongoose.connect('mongodb://localhost:27017/meanDB', { useNewUrlParser: true, us
   .then(() => console.log(' MongoDB connected'))
   .catch(err => console.error(' MongoDB connection error:', err));
 
+const Budget=new mongoose.Schema({
+    partName: {
+      type:String,
+      require: true
+    },
+    partAmount: {
+      type: Number,
+      require:true
+    }
+})
 
-const user=new mongoose.Schema({
+const Expenses=new mongoose.Schema({
+    expenseName: {
+      type: String,
+      require: true
+    },
+    expenseAmount: {
+        type: Number,
+        require: true
+    }
+})
+const User=new mongoose.Schema({
   email: {
     type:String,
-    required:true
+    require:true
   },
   password: {
     type:String,
-    required:true
+    requir:true
   },
   username:String,
   budget: [],
