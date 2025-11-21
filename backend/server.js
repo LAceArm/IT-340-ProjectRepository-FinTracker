@@ -10,11 +10,8 @@ mongoose.connect('mongodb://localhost:27017/meanDB', { useNewUrlParser: true, us
   .then(() => console.log(' MongoDB connected'))
   .catch(err => console.error(' MongoDB connection error:', err));
 
+
 const user=new mongoose.Schema({
-  id: {
-    type:String,
-    required:true
-  },
   email: {
     type:String,
     required:true
