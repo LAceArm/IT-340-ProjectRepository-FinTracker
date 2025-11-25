@@ -19,7 +19,7 @@ const Budget=new mongoose.Schema({
       type: Number,
       require:true
     }
-})
+});
 
 const Expenses=new mongoose.Schema({
     expenseName: {
@@ -30,7 +30,7 @@ const Expenses=new mongoose.Schema({
         type: Number,
         require: true
     }
-})
+});
 const User=new mongoose.Schema({
   email: {
     type:String,
@@ -43,7 +43,7 @@ const User=new mongoose.Schema({
   username:String,
   budget: [Budget],
   expenses: [Expenses]
-})
+});
 app.get('/', (req, res) => {
   res.send('Backend is running');
 });
