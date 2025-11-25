@@ -44,6 +44,8 @@ const User=new mongoose.Schema({
   budget: [Budget],
   expenses: [Expenses]
 });
+
+var userModel=mongoose.model('User',User);
 app.get('/', (req, res) => {
   res.send('Backend is running');
 });
