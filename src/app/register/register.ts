@@ -1,11 +1,18 @@
 import { Component } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+
+// IMPORTANT: We will fix this path in STEP 2
 import { environment } from '../../environments/environment';
+
+import { FormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-register',
   templateUrl: './register.html',
-  styleUrls: ['./register.css']
+  styleUrls: ['./register.css'],
+  standalone: true,
+  imports: [FormsModule, CommonModule]
 })
 export class RegisterComponent {
 
