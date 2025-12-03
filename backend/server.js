@@ -50,6 +50,19 @@ export default userModel;
 app.get('/', (req, res) => {
   res.send('Backend is running');
 });
+/* 
+  USING THE MODEL:
+  on the top of any page using that will use the model, write 
+  import userModel from (Path to this file)
+
+  for register, the query will look like 
+  const (varname)= await userModel.create((Credentials the user will input))
+
+  for login, the query will search for a user's email, and it will look like
+  const (varname)= await userModel.findOne({email: '(User email)'})
+  to check the password I'm a little unsure, but it should be (varname).password.
+  Of course, you will have to unhash the value first.
+*/
 
 app.listen(3000, '0.0.0.0', () => console.log(' Server running on port 3000'));
 
