@@ -6,7 +6,7 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-mongoose.connect('mongodb://localhost:27017/meanDB', { useNewUrlParser: true, useUnifiedTopology: true })
+mongoose.connect('mongodb://127.0.0.1:27017/?directConnection=true&serverSelectionTimeoutMS=2000&appName=mongosh+2.5.9', { useNewUrlParser: true, useUnifiedTopology: true })
   .then(() => console.log(' MongoDB connected'))
   .catch(err => console.error(' MongoDB connection error:', err));
 
@@ -38,7 +38,7 @@ const User=new mongoose.Schema({
   },
   password: {
     type:String,
-    requir:true
+    require:true
   },
   username:String,
   budget: [Budget],
