@@ -1,4 +1,3 @@
-  GNU nano 7.2                                                                   register.ts                                                                            
 import { Component } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { RouterLink } from '@angular/router';
