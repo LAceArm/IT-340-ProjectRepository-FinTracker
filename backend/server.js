@@ -63,6 +63,35 @@ app.get('/', (req, res) => {
   to check the password I'm a little unsure, but it should be (varname).password.
   Of course, you will have to unhash the value first.
 */
+app.post('/register', async (req, res) => {
+  try {
+    const { email, password, username } = req.body;
+
+    // Check if user exists
+    const existingUser = await userModel.findOne({ email });
+    if (existingUser) {
+      return res.status(400).json({ success: false, message: "Email already exists" });
+    }
+
+    // Create user
+    const user = await userModel.create({
+      email,
+      password,
+      username
+    });
+
+    res.json({ success: true, message: "Registration successful", user });
+
+  } catch (err) {
+    console.error("REGISTER ERROR:", err);
+    res.status(500).json({ success: false, message: "Server error", error: err.message });
+  }
+});
+
 
 app.listen(3000, '0.0.0.0', () => console.log(' Server running on port 3000'));
+
+
+
+
 
