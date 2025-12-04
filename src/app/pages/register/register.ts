@@ -1,3 +1,4 @@
+  GNU nano 7.2                                                                   register.ts                                                                            
 import { Component } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { RouterLink } from '@angular/router';
@@ -23,7 +24,7 @@ export class RegisterComponent {
   constructor(private http: HttpClient) {}
 
   onRegister() {
-    const backendUrl = 'http://10.0.2.15:3000/api/auth/register';
+    const backendUrl = 'http://10.0.2.15:3000/register';
 
     this.http.post(backendUrl, this.user).subscribe({
       next: () => this.message = 'Account created successfully!',
@@ -31,3 +32,8 @@ export class RegisterComponent {
     });
   }
 }
+
+
+
+
+
