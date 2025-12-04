@@ -1,13 +1,36 @@
 <div class="register-container">
   <h2>Register</h2>
 
-  <form>
-    <input type="text" placeholder="Name">
-    <input type="email" placeholder="Email">
-    <input type="password" placeholder="Password">
+  <form (ngSubmit)="onRegister()" #regForm="ngForm">
 
-    <button>Register</button>
+    <input
+      type="text"
+      placeholder="Name"
+      [(ngModel)]="user.name"
+      name="name"
+      required
+    />
+
+    <input
+      type="email"
+      placeholder="Email"
+      [(ngModel)]="user.email"
+      name="email"
+      required
+    />
+
+    <input
+      type="password"
+      placeholder="Password"
+      [(ngModel)]="user.password"
+      name="password"
+      required
+    />
+
+    <button type="submit">Register</button>
   </form>
+
+  <p>{{ message }}</p>
 
   <p><a routerLink="/">Back to Login</a></p>
 </div>
