@@ -46,7 +46,7 @@ const User=new mongoose.Schema({
 });
 
 var userModel=mongoose.model('User',User);
-export default userModel;
+module.exports = userModel;
 app.get('/', (req, res) => {
   res.send('Backend is running');
 });
