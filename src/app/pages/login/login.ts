@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
-import { RouterLink } from '@angular/router';
+import { RouterLink, Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -19,7 +19,7 @@ export class LoginComponent {
 
   message = '';
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private router: Router) {}
 
   onLogin() {
     const backendUrl = 'http://10.0.2.15:3000/login';
@@ -28,11 +28,19 @@ export class LoginComponent {
       next: (res: any) => {
         if (res.success) {
           this.message = 'Login successful!';
+
+          // Save user info locally so other pages can use it
+          localStorage.setItem('user', JSON.stringify(res.user));
+
+          // Redirect to dashboard or home page
+          this.router.navigate(['/dashboard']);
         } else {
           this.message = 'Login failed: ' + res.message;
         }
       },
-      error: () => this.message = 'Login request failed.'
+      error: () => {
+        this.message = 'Login request failed.';
+      }
     });
   }
 }
