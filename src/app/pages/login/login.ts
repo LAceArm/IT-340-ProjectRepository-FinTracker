@@ -30,10 +30,11 @@ export class LoginComponent {
           this.message = 'Login successful!';
 
           // Save user info locally so other pages can use it
+	  localStorage.setItem('loggedIn', 'true');
           localStorage.setItem('user', JSON.stringify(res.user));
 
           // Redirect to dashboard or home page
-          this.router.navigate(['/dashboard']);
+	  this.router.navigateByUrl('/dashboard', { replaceUrl: true });
         } else {
           this.message = 'Login failed: ' + res.message;
         }

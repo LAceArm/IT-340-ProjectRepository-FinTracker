@@ -13,6 +13,7 @@ export class DashboardComponent {
 
   logout() {
     localStorage.clear();   // (optional – for future JWT storage)
-    this.router.navigate(['/']);
+    sessionStorage.clear();
+    this.router.navigateByUrl('/', { replaceUrl: true });
   }
 }
