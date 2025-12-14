@@ -23,7 +23,7 @@ export class RegisterComponent {
   constructor(private http: HttpClient) {}
 
   onRegister() {
-    const backendUrl = 'http://10.0.2.15:3000/register';
+    const backendUrl = 'http://192.168.10.30:3000/register';
 
     this.http.post(backendUrl, this.user).subscribe({
       next: () => this.message = 'Account created successfully!',
