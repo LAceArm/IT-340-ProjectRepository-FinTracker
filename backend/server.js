@@ -116,7 +116,38 @@ app.post('/login', async (req, res) => {
 
 app.listen(3000, '0.0.0.0', () => console.log(' Server running on port 3000'));
 
+// Budget
 
+
+// Add budget item
+app.post('/budget/:userId', async (req, res) => {
+  try {
+    const { partName, partAmount } = req.body;
+
+    const user = await userModel.findById(req.params.userId);
+    user.budget.push({ partName, partAmount });
+    await user.save();
+
+    res.json({ success: true, budget: user.budget });
+  } catch (err) {
+    res.status(500).json({ success: false });
+  }
+});
+
+// Add expense
+app.post('/expense/:userId', async (req, res) => {
+  try {
+    const { expenseName, expenseAmount } = req.body;
+
+    const user = await userModel.findById(req.params.userId);
+    user.expenses.push({ expenseName, expenseAmount });
+    await user.save();
+
+    res.json({ success: true, expenses: user.expenses });
+  } catch (err) {
+    res.status(500).json({ success: false });
+  }
+});
 
 
 
