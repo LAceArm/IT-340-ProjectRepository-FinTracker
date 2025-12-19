@@ -30,7 +30,13 @@ export class LoginComponent {
           this.message = 'Login successful!';
 
           // Save user info locally so other pages can use it
+
+	  //REQUIRED FOR AUTH GUARD AND BUDGET ROUTES
 	  localStorage.setItem('loggedIn', 'true');
+
+	  //REQUIRED FOR userId separately
+	  localStorage.setItem('userId', res.userId);
+
           localStorage.setItem('user', JSON.stringify(res.user));
 
           // Redirect to dashboard or home page

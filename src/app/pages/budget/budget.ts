@@ -22,13 +22,27 @@ export class BudgetComponent {
   constructor(private http: HttpClient) {}
 
   saveBudget() {
-    this.http.post(
-      'http://192.168.10.30:3000/budget',
-      this.budget,
-      { withCredentials: true }
-    ).subscribe({
-      next: () => this.message = 'Budget saved',
-      error: () => this.message = 'Failed to save budget'
-    });
+  const userId = localStorage.getItem('userId');
+
+  if (!userId) {
+    this.message = 'Not logged in';
+    return;
   }
+
+  const data = {
+    partName: 'Total Budget',
+    partAmount:
+      this.budget.income -
+      (this.budget.rent +
+       this.budget.utilities +
+       this.budget.groceries)
+  };
+
+  this.http
+    .post(`http://192.168.10.30:3000/budget/${userId}`, data)
+    .subscribe({
+      next: () => (this.message = 'Budget saved'),
+      error: () => (this.message = 'Failed to save budget')
+    });
+}
 }

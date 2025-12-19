@@ -7,5 +7,6 @@ import { DashboardComponent } from './pages/dashboard/dashboard';
 export const routes: Routes = [
   { path: '', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
-  { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard] }
+  { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard] },
+  { path: 'budget', loadComponent: () => import('./pages/budget/budget').then(m => m.BudgetComponent)}
 ];
