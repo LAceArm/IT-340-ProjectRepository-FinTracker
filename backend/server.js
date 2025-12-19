@@ -3,7 +3,12 @@ const mongoose = require('mongoose');
 const cors = require('cors');
 const app = express();
 
-app.use(cors());
+app.use(cors({
+  origin: 'http://localhost:4200',
+  credentials: true,
+  methods: ['GET', 'POST', 'PUT', 'DELETE'],
+  allowedHeaders: ['Content-Type'],
+}));
 app.use(express.json());
 
 mongoose.connect('mongodb://127.0.0.1:27017/?directConnection=true&serverSelectionTimeoutMS=2000&appName=mongosh+2.5.9', { useNewUrlParser: true, useUnifiedTopology: true })
@@ -106,7 +111,10 @@ app.post('/login', async (req, res) => {
       return res.json({ success: false, message: 'Incorrect password' });
     }
 
-    res.json({ success: true, message: 'Login successful', user });
+    res.json({
+      success: true,
+      userId: user._id
+ });
   } 
   catch (err) {
     res.json({ success: false, message: 'Server error' });
