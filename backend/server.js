@@ -110,6 +110,7 @@ app.post('/login', async (req, res) => {
     if (user.password !== password) {
       return res.json({ success: false, message: 'Incorrect password' });
     }
+    await logAction(user._id, 'User logged in');
 
     res.json({
       success: true,
@@ -157,5 +158,22 @@ app.post('/expense/:userId', async (req, res) => {
   }
 });
 
+//LOGGING
+   const LogSchema = new mongoose.Schema({
+     userId: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
+     action: String,
+     timestamp: { type: Date, default: Date.now }
+});
 
+   const Log = mongoose.model('Log', LogSchema);
 
+   async function logAction(userId, action) {
+     try {
+       await Log.create({
+         userId,
+         action
+       });
+     } catch (err) {
+       console.error('Log error', err);
+     }
+}
