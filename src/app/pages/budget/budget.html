@@ -1,0 +1,12 @@
+<h2>My Budget</h2>
+
+<form (ngSubmit)="saveBudget()">
+  <input type="number" placeholder="Income" [(ngModel)]="budget.income" name="income" required />
+  <input type="number" placeholder="Rent" [(ngModel)]="budget.rent" name="rent" required />
+  <input type="number" placeholder="Utilities" [(ngModel)]="budget.utilities" name="utilities" required />
+  <input type="number" placeholder="Groceries" [(ngModel)]="budget.groceries" name="groceries" required />
+
+  <button type="submit">Save Budget</button>
+</form>
+
+<p>{{ message }}</p>
